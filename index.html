@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Una sorpresa para ti 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --pink-bg: #f1d9cf;
+            --pink-light: #fff3ef;
+            --pink-card: #fffaf8;
+            --pink-warm: #e98682;
+            --pink-dark: #c96869;
+            --text: #5b4143;
+            --black: #302627;
+            --white: #ffffff;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+
+            font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+            color: var(--text);
+
+            background-color: var(--pink-bg);
+            background-image: url("./assets/FONDO.jfif");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+        }
+
+        /* =========================
+           ESTRELLITAS DEL FONDO
+        ========================== */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            color: #302627;
+            font-size: 12px;
+            opacity: 0.75;
+            animation: twinkle 2.8s ease-in-out infinite;
+        }
+
+        .star:nth-child(1) {
+            top: 8%;
+            left: 12%;
+        }
+
+        .star:nth-child(2) {
+            top: 14%;
+            left: 28%;
+        }
+
+        .star:nth-child(3) {
+            top: 9%;
+            right: 24%;
+        }
+
+        .star:nth-child(4) {
+            top: 18%;
+            right: 9%;
+        }
+
+        .star:nth-child(5) {
+            top: 29%;
+            left: 7%;
+        }
+
+        .star:nth-child(6) {
+            top: 34%;
+            left: 18%;
+        }
+
+        .star:nth-child(7) {
+            top: 27%;
+            right: 17%;
+        }
+
+        .star:nth-child(8) {
+            top: 42%;
+            right: 7%;
+        }
+
+        .star:nth-child(9) {
+            top: 48%;
+            left: 8%;
+        }
+
+        .star:nth-child(10) {
+            top: 55%;
+            left: 20%;
+        }
+
+        .star:nth-child(11) {
+            top:52%;
+            right: 16%;
+        }
+
+        .star:nth-child(12) {
+            top: 62%;
+            right: 7%;
+        }
+
+        .star:nth-child(13) {
+            top: 68%;
+            left: 10%;
+        }
+
+        .star:nth-child(14) {
+            top: 73%;
+            left: 27%;
+        }
+
+        .star:nth-child(15) {
+            top: 70%;
+            right: 22%;
+        }
+
+        .star:nth-child(16) {
+            top: 80%;
+            right: 9%;
+        }
+
+        .star:nth-child(17) {
+            top: 86%;
+            left: 15%;
+        }
+
+        .star:nth-child(18) {
+            top: 90%;
+            left: 40%;
+        }
+
+        .star:nth-child(19) {
+            top: 84%;
+            right: 35%;
+        }
+
+        .star:nth-child(20) {
+            top: 94%;
+            right: 14%;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: .35;
+            }
+
+            50% {
+                transform: scale(1.5) rotate(15deg);
+                opacity: .9;
+            }
+        }
+
+        /* =========================
+           TARJETA PRINCIPAL
+        ========================== */
+
+        .card {
+            width: min(390px, calc(100vw - 120px));
+            max-height: 92vh;
+            padding: 32px 27px 28px;
+
+            background: var(--pink-card);
+            border: 3px solid #f2aaa1;
+            border-radius: 32px;
+
+            box-shadow:
+                0 12px 0 rgba(190, 92, 91, .16),
+                0 20px 35px rgba(120, 55, 55, .15);
+
+            position: relative;
+            z-index: 10;
+
+            text-align: center;
+
+            animation: cardAppear .8s cubic-bezier(.17,.67,.3,1.3);
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(.92);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Decoraciones */
+
+        .corner-heart {
+            position: absolute;
+            font-size: 18px;
+            opacity: .75;
+        }
+
+        .corner-heart.top-left {
+            top: 15px;
+            left: 18px;
+        }
+
+        .corner-heart.top-right {
+            top: 15px;
+            right: 18px;
+        }
+
+        .small-decoration {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        /* =========================
+           TITULO
+        ========================== */
+
+        h1 {
+            font-size: clamp(20px, 5vw, 25px);
+            line-height: 1.25;
+            color: var(--pink-dark);
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            line-height: 1.45;
+            color: #876567;
+            margin: 0 auto 22px;
+            max-width: 270px;
+        }
+
+        /* =========================
+           CASILLAS DE CONTRASEÑA
+        ========================== */
+
+        .password-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .password-box {
+            width: 51px;
+            height: 57px;
+
+            border: 2px solid #e6aaa3;
+            border-radius: 15px;
+
+            background: #fff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+            font-weight: bold;
+            color: var(--pink-dark);
+
+            box-shadow: inset 0 -3px 0 rgba(225, 155, 150, .12);
+
+            transition:
+                transform .15s ease,
+                border-color .2s ease,
+                background .2s ease;
+        }
+
+        .password-box.filled {
+            border-color: var(--pink-warm);
+            background: #fff6f3;
+            transform: translateY(-3px);
+        }
+
+        .password-box.error {
+            animation: shake .35s ease;
+            border-color: #d45d64;
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-7px);
+            }
+
+            50% {
+                transform: translateX(7px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        /* =========================
+           TECLADO
+        ========================== */
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 285px;
+            margin: 0 auto;
+        }
+
+        .key {
+            border: none;
+            min-height: 53px;
+
+            border-radius: 17px;
+
+            background: #f8d4cd;
+            color: var(--text);
+
+            font-size: 20px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 4px 0 #e5aaa2,
+                0 7px 12px rgba(160, 80, 80, .10);
+
+            transition:
+                transform .1s ease,
+                box-shadow .1s ease,
+                background .2s ease;
+        }
+
+        .key:hover {
+            background: #f5c6bd;
+        }
+
+        .key:active {
+            transform: translateY(4px);
+            box-shadow:
+                0 0 0 #e5aaa2,
+                0 3px 6px rgba(160, 80, 80, .1);
+        }
+
+        .key.action {
+            background: #f2aaa1;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .key.action:hover {
+            background: #e99691;
+        }
+
+        /* =========================
+           MENSAJE DE ESTADO
+        ========================== */
+
+        .message {
+            height: 22px;
+            margin-top: 17px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            color: #d17476;
+
+            opacity: 0;
+            transition: opacity .25s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+
+        /* =========================
+           CORAZONCITOS FLOTANTES
+        ========================== */
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 20;
+            font-size: 18px;
+            animation: floatHeart 1s ease-out forwards;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(.7);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) scale(1.2) rotate(15deg);
+            }
+        }
+
+        /* =========================
+           PANTALLA DE ÉXITO
+        ========================== */
+
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(255, 243, 239, .96);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 100;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity .5s ease;
+        }
+
+        .success-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .success-content {
+            text-align: center;
+            padding: 30px;
+            animation: successPop .7s cubic-bezier(.17,.67,.3,1.4);
+        }
+
+        .success-content .big-heart {
+            font-size: 65px;
+            display: block;
+            margin-bottom: 15px;
+            animation: heartbeat 1s infinite;
+        }
+
+        .success-content h2 {
+            color: var(--pink-dark);
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .success-content p {
+            color: #876567;
+            font-size: 15px;
+        }
+
+        @keyframes successPop {
+            from {
+                opacity: 0;
+                transform: scale(.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                background-size: 23px 23px;
+            }
+
+            .card {
+                width: calc(100vw - 82px);
+                padding: 25px 18px 23px;
+                border-radius: 27px;
+            }
+
+            .corner-heart {
+                font-size: 14px;
+            }
+
+            .password-boxes {
+                gap: 8px;
+                margin-bottom: 19px;
+            }
+
+            .password-box {
+                width: 45px;
+                height: 50px;
+                border-radius: 13px;
+            }
+
+            .keypad {
+                gap: 8px;
+                max-width: 260px;
+            }
+
+            .key {
+                min-height: 48px;
+                border-radius: 15px;
+            }
+
+            .subtitle {
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (max-width: 350px) {
+
+            .card {
+                width: calc(100vw - 64px);
+                padding-left: 13px;
+                padding-right: 13px;
+            }
+
+            .password-box {
+                width: 40px;
+                height: 45px;
+            }
+
+            .keypad {
+                gap: 6px;
+            }
+
+            .key {
+                min-height: 44px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         ESTRELLITAS
+    ========================== -->
+
+    <div class="stars">
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+        <span class="star">✦</span>
+    </div>
+
+    <!-- =========================
+         TARJETA
+    ========================== -->
+
+    <main class="card">
+
+        <span class="corner-heart top-left">♡</span>
+        <span class="corner-heart top-right">♡</span>
+
+        <div class="small-decoration">
+            🎀
+        </div>
+
+        <h1>
+            Digita la clave
+        </h1>
+
+        <p class="subtitle">
+            Tengo una sorpresa para ti... 💗
+        </p>
+
+
+        <!-- =========================
+             CASILLAS
+        ========================== -->
+
+        <div class="password-boxes">
+
+            <div class="password-box" id="box-0"></div>
+            <div class="password-box" id="box-1"></div>
+            <div class="password-box" id="box-2"></div>
+            <div class="password-box" id="box-3"></div>
+
+        </div>
+
+
+        <!-- =========================
+             TECLADO
+        ========================== -->
+
+        <div class="keypad">
+
+            <button class="key" onclick="pressNumber('1')">1</button>
+            <button class="key" onclick="pressNumber('2')">2</button>
+            <button class="key" onclick="pressNumber('3')">3</button>
+
+            <button class="key" onclick="pressNumber('4')">4</button>
+            <button class="key" onclick="pressNumber('5')">5</button>
+            <button class="key" onclick="pressNumber('6')">6</button>
+
+            <button class="key" onclick="pressNumber('7')">7</button>
+            <button class="key" onclick="pressNumber('8')">8</button>
+            <button class="key" onclick="pressNumber('9')">9</button>
+
+            <button class="key action" onclick="clearAll()">
+                Borrar todo
+            </button>
+
+            <button class="key" onclick="pressNumber('0')">
+                0
+            </button>
+
+            <button class="key action" onclick="deleteLast()">
+                ⌫ Borrar
+            </button>
+
+        </div>
+
+
+        <div class="message" id="message"></div>
+
+    </main>
+
+
+    <!-- =========================
+         PANTALLA DE ÉXITO
+    ========================== -->
+
+    <div class="success-overlay" id="successOverlay">
+
+        <div class="success-content">
+
+            <span class="big-heart">💗</span>
+
+            <h2>
+                ¡Clave correcta!
+            </h2>
+
+            <p>
+                Preparando tu sorpresa... ✨
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /*
+         * ==========================================
+         * CONFIGURACIÓN
+         * ==========================================
+         */
+
+        const CORRECT_PASSWORD = "1608";
+
+        let enteredPassword = "";
+
+
+        /*
+         * ==========================================
+         * DIGITAR NÚMERO
+         * ==========================================
+         */
+
+        function pressNumber(number) {
+
+            // Solo permitimos 4 dígitos
+            if (enteredPassword.length >= 4) {
+                return;
+            }
+
+            enteredPassword += number;
+
+            updateBoxes();
+
+            createHeart();
+
+            // Cuando llegue a 4 dígitos,
+            // comprobamos automáticamente.
+            if (enteredPassword.length === 4) {
+
+                setTimeout(checkPassword, 250);
+
+            }
+        }
+
+
+        /*
+         * ==========================================
+         * ACTUALIZAR CASILLAS
+         * ==========================================
+         */
+
+        function updateBoxes() {
+
+            for (let i = 0; i < 4; i++) {
+
+                const box = document.getElementById(`box-${i}`);
+
+                if (enteredPassword[i]) {
+
+                    // Mostramos un corazón pequeño
+                    // en lugar del número.
+                    box.textContent = "♥";
+
+                    box.classList.add("filled");
+
+                } else {
+
+                    box.textContent = "";
+
+                    box.classList.remove("filled");
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * ==========================================
+         * BORRAR ÚLTIMO NÚMERO
+         * ==========================================
+         */
+
+        function deleteLast() {
+
+            if (enteredPassword.length === 0) {
+                return;
+            }
+
+            enteredPassword = enteredPassword.slice(0, -1);
+
+            updateBoxes();
+
+            showMessage("");
+
+        }
+
+
+        /*
+         * ==========================================
+         * BORRAR TODO
+         * ==========================================
+         */
+
+        function clearAll() {
+
+            enteredPassword = "";
+
+            updateBoxes();
+
+            showMessage("");
+
+        }
+
+
+        /*
+         * ==========================================
+         * COMPROBAR CONTRASEÑA
+         * ==========================================
+         */
+
+        function checkPassword() {
+
+            if (enteredPassword === CORRECT_PASSWORD) {
+
+                showSuccess();
+
+            } else {
+
+                showError();
+
+            }
+
+        }
+
+
+        /*
+         * ==========================================
+         * ERROR
+         * ==========================================
+         */
+
+        function showError() {
+
+            const boxes = document.querySelectorAll(".password-box");
+
+            boxes.forEach(box => {
+                box.classList.add("error");
+            });
+
+            showMessage("Mmm... esa no es la clave 💭");
+
+            setTimeout(() => {
+
+                boxes.forEach(box => {
+                    box.classList.remove("error");
+                });
+
+                clearAll();
+
+            }, 800);
+
+        }
+
+
+        /*
+         * ==========================================
+         * MENSAJES
+         * ==========================================
+         */
+
+        function showMessage(text) {
+
+            const message = document.getElementById("message");
+
+            message.textContent = text;
+
+            if (text) {
+                message.classList.add("show");
+            } else {
+                message.classList.remove("show");
+            }
+
+        }
+
+
+        /*
+         * ==========================================
+         * CORAZONES AL PRESIONAR
+         * ==========================================
+         */
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            heart.textContent = Math.random() > .5 ? "♡" : "♥";
+
+            heart.style.left =
+                `${45 + (Math.random() * 10)}%`;
+
+            heart.style.top =
+                `${58 + (Math.random() * 10)}%`;
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+
+        }
+
+
+        /*
+         * ==========================================
+         * ÉXITO
+         * ==========================================
+         */
+
+        function showSuccess() {
+
+            const overlay =
+                document.getElementById("successOverlay");
+
+            overlay.classList.add("active");
+
+            /*
+             * Aquí posteriormente podemos hacer que
+             * pase automáticamente a la segunda página.
+             *
+             * Por ahora dejamos la animación unos
+             * segundos.
+             */
+
+            setTimeout(() => {
+
+                window.location.href = "cumple.html";
+
+            }, 2200);
+
+        }
+
+
+        /*
+         * ==========================================
+         * SOPORTE PARA TECLADO FÍSICO
+         * ==========================================
+         */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (/^[0-9]$/.test(event.key)) {
+
+                pressNumber(event.key);
+
+            }
+
+            if (event.key === "Backspace") {
+
+                deleteLast();
+
+            }
+
+            if (event.key === "Escape") {
+
+                clearAll();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
